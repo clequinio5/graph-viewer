@@ -1,0 +1,1 @@
+node ./src/graph-viewer.js %1 %2 %3

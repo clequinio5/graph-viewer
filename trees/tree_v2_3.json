@@ -1,0 +1,337 @@
+{
+    "0": [
+        {
+            "entite": "CircuitDeVoie",
+            "collection": "ar.ifx.CircuitDeVoie-cacheReference",
+            "_id": {
+                "id": "1659a950-6668-11e3-8cff-01f464e0362d",
+                "revision": "0"
+            }
+        }
+    ],
+    "1": [
+        {
+            "entite": "JointDeZone",
+            "_id": {
+                "id": "d044706c-1434-11e6-98ff-019064e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "1659a950-6668-11e3-8cff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "jointsZoneId",
+                "jdzId"
+            ],
+            "collection": "ar.ifx.JointDeZone-cacheReference",
+            "parent_collection": "ar.ifx.CircuitDeVoie-cacheReference"
+        },
+        {
+            "entite": "JointDeZone",
+            "_id": {
+                "id": "8904e8f2-4964-11e4-9bff-012064e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "1659a950-6668-11e3-8cff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "jointsZoneId",
+                "jdzId"
+            ],
+            "collection": "ar.ifx.JointDeZone-cacheReference",
+            "parent_collection": "ar.ifx.CircuitDeVoie-cacheReference"
+        },
+        {
+            "entite": "TypeInstallationFixe",
+            "_id": {
+                "id": "45cd20b4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "1659a950-6668-11e3-8cff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "typeInstallationFixeId",
+            "collection": "ar.ifx.TypeInstallationFixe-cacheReference",
+            "parent_collection": "ar.ifx.CircuitDeVoie-cacheReference"
+        },
+        {
+            "entite": "RelationLocalisationJDZ",
+            "parent_id": {
+                "id": "1659a950-6668-11e3-8cff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [],
+            "balise": "id",
+            "parent_collection": "ar.ifx.CircuitDeVoie-cacheReference"
+        }
+    ],
+    "2": [
+        {
+            "entite": "SystemeReperageVoie",
+            "_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "d044706c-1434-11e6-98ff-019064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "systemeReperageId",
+                "systemeReperageId"
+            ],
+            "collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "SystemeReperageVoie",
+            "_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "8904e8f2-4964-11e4-9bff-012064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "systemeReperageId",
+                "systemeReperageId"
+            ],
+            "collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "TypeInstallationFixe",
+            "_id": {
+                "id": "1ac56e30-2fa3-11e5-b8ff-017864e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "d044706c-1434-11e6-98ff-019064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "typeInstallationFixeId",
+            "collection": "ar.ifx.TypeInstallationFixe-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "TypeInstallationFixe",
+            "_id": {
+                "id": "1ac56e30-2fa3-11e5-b8ff-017864e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "8904e8f2-4964-11e4-9bff-012064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "typeInstallationFixeId",
+            "collection": "ar.ifx.TypeInstallationFixe-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "TronconDItineraireVoie",
+            "_id": {
+                "id": "61fb0616-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "d044706c-1434-11e6-98ff-019064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "ressourceQuiPorteId",
+            "collection": "ar.ressourcesVoie.TronconDItineraireVoie-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "TronconDItineraireVoie",
+            "_id": {
+                "id": "61fb0616-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "8904e8f2-4964-11e4-9bff-012064e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "ressourceQuiPorteId",
+            "collection": "ar.ressourcesVoie.TronconDItineraireVoie-cacheReference",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        },
+        {
+            "entite": "Localisation",
+            "parent_id": {
+                "id": "8904e8f2-4964-11e4-9bff-012064e0362d",
+                "revision": "0"
+            },
+            "revisions": [],
+            "balise": "id",
+            "parent_collection": "ar.ifx.JointDeZone-cacheReference"
+        }
+    ],
+    "3": [
+        {
+            "entite": "SystemeReperageVoie",
+            "_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61fb0616-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "systemeReperageId",
+                "srPkId",
+                "systemeReperageId"
+            ],
+            "collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.TronconDItineraireVoie-cacheReference"
+        },
+        {
+            "entite": "SystemeReperageVoie",
+            "_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61fb0616-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": [
+                "systemeReperageId",
+                "srPkId",
+                "systemeReperageId"
+            ],
+            "collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.TronconDItineraireVoie-cacheReference"
+        },
+        {
+            "entite": "SystemeReperageLigne",
+            "_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "srPkLigneId",
+            "collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference"
+        },
+        {
+            "entite": "SystemeReperageLigne",
+            "_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "srPkLigneId",
+            "collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference"
+        }
+    ],
+    "4": [
+        {
+            "entite": "SystemeReperageLigne",
+            "_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "srPkLigneId",
+            "collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference"
+        },
+        {
+            "entite": "SystemeReperageLigne",
+            "_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "parent_id": {
+                "id": "61f96b6a-6667-11e3-81ff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [
+                "0"
+            ],
+            "balise": "srPkLigneId",
+            "collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference",
+            "parent_collection": "ar.ressourcesVoie.SystemeReperageVoie-cacheReference"
+        },
+        {
+            "entite": "AnomalieVoiesLigne",
+            "parent_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [],
+            "balise": "id",
+            "parent_collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference"
+        }
+    ],
+    "5": [
+        {
+            "entite": "AnomalieVoiesLigne",
+            "parent_id": {
+                "id": "48ec65c4-6665-11e3-afff-01f464e0362d",
+                "revision": "0"
+            },
+            "revisions": [],
+            "balise": "id",
+            "parent_collection": "ar.ressourcesLigne.SystemeReperageLigne-cacheReference"
+        }
+    ]
+}

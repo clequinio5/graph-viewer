@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="./lib/d3.v3.min.js"></script>
+<style>
+    path.link {
+        fill: none;
+        stroke: #666;
+        stroke-width: 1.5px;
+    }
+
+    text {
+        fill: #000;
+        font: 10px sans-serif;
+        pointer-events: none;
+    }
+</style>
+
+<body>
+    <script>
+        var tree = "./trees/tree.json";
+        var sens = "desc";
+        d3.json(tree, function (error, json) {
+
+            var color = d3.scale.category20();
+
+            var legends = {}
+            var nodesUnordered = {}
+            var links = []
+            Object.keys(json).forEach(function (key) {
+                var objs = json[key];
+                objs.forEach(function (obj) {
+                    if (Object.keys(legends).includes(obj.entite)) {
+                        legends[obj.entite].count++
+                    } else {
+                        legends[obj.entite] = { count: 1, isVisible: true }
+                    }
+                    if (obj.parent_uuid) {
+                        if (sens == "asc") {
+                            link = { source: obj.entite + " " + obj.uuid, target: obj.parent_entite + " " + obj.parent_uuid, value: 1, entite: obj.entite, obj: obj };
+                        } else {
+                            link = { source: obj.parent_entite + " " + obj.parent_uuid, target: obj.entite + " " + obj.uuid, value: 1, entite: obj.entite, obj: obj };
+                        }
+                        links.push(link);
+                    } else {
+                        nodesUnordered[obj.entite + " " + obj.uuid] = { name: obj.entite + " " + obj.uuid, obj: obj, entite: obj.entite }
+                    }
+                })
+            })
+
+            links.forEach(function (link) {
+                link.source = nodesUnordered[link.source] ||
+                    (nodesUnordered[link.source] = { name: link.source, obj: link.obj, entite: link.entite });
+                link.target = nodesUnordered[link.target] ||
+                    (nodesUnordered[link.target] = { name: link.target, obj: link.obj, entite: link.entite });
+                link.value = +link.value;
+            })
+
+            var nodes = {}
+            Object.keys(nodesUnordered).sort().forEach(function (key) {
+                nodes[key] = nodesUnordered[key]
+            })
+
+            //var width = window.innerWidth || document.body.clientWidth,
+            //    height = window.innerHeight || document.body.clientHeight;
+				
+			var width = 1366,
+                height = 768;
+
+            var force = d3.layout
+                .force()
+                .nodes(d3.values(nodes))
+                .links(links)
+                .size([width, height])
+                .linkDistance(100)
+                .charge(-300)
+                .on("tick", tick)
+                .start();
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            // build the arrow.
+            svg.append("svg:defs").selectAll("marker")
+                .data(["end"])      // Different link/path types can be defined here
+                .enter().append("svg:marker")    // This section adds in the arrows
+                .attr("id", String)
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 15)
+                .attr("refY", -1.5)
+                .attr("markerWidth", 6)
+                .attr("markerHeight", 6)
+                .attr("orient", "auto")
+                .append("svg:path")
+                .attr("d", "M0,-5L10,0L0,5");
+
+            // add the links and the arrows
+            var path = svg.append("svg:g").selectAll("path")
+                .data(force.links())
+                .enter().append("svg:path")
+                .attr("class", "link")
+                .attr("marker-end", "url(#end)");
+
+            var node = svg.selectAll(".node")
+                .data(force.nodes())
+                .enter().append("g")
+                .attr("class", "node")
+                .attr("entite", function (d) { return d.entite; })
+                .attr("isBold", "false")
+                .on("click", clickNode)
+                .on("dblclick", dblclickNode)
+                .call(force.drag);
+
+            node.append("circle")
+                .attr("r", 5)
+                .attr("fill", function (d) {
+                    return color(Object.keys(legends).indexOf(d.entite))
+                })
+
+            node.append("text")
+                .attr("x", 12)
+                .attr("dy", ".35em")
+                .text(function (d) { return d.name; });
+
+            var legend = svg.selectAll(".legend")
+                .data(color.domain())
+                .enter().append("g")
+                .attr("class", "legend")
+                .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; })
+                .on("click", clickLegend)
+                .on("dblclick", dblclickLegend);
+
+            legend.append("rect")
+                .attr("x", 0)
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", color);
+
+            legend.append("text")
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .style("text-anchor", "start")
+                .text(function (d) {
+                    console.log(d)
+                    var entite = Object.keys(legends)[d];
+                    var count = legends[entite].count
+                    return entite + " " + count;
+                });
+
+            function dblclickNode(d) {
+                var title = d3.select(this).text();
+                var obj = JSON.stringify(d.obj, null, 4);
+                var tab = window.open('about:blank', '_blank');
+                tab.document.write("<title>" + title + "</title><pre>" + obj + "</pre>");
+                tab.document.close();
+            }
+
+            function clickNode() {
+                var isBold = d3.select(this).attr("isBold")
+                if (isBold == "true") {
+                    d3.select(this).select("text").transition()
+                        .duration(750)
+                        .attr("x", 12)
+                        .style("font", "10px sans-serif");
+                    d3.select(this).select("circle").transition()
+                        .duration(750)
+                        .attr("r", 5)
+                    d3.select(this).attr("isBold", "false")
+                } else {
+                    d3.select(this).select("text").transition()
+                        .duration(750)
+                        .attr("x", 30)
+                        .style("font", "30px sans-serif");
+                    d3.select(this).select("circle").transition()
+                        .duration(750)
+                        .attr("r", 22)
+                    d3.select(this).attr("isBold", "true")
+                }
+
+            }
+
+            function clickLegend(d) {
+                var entite = Object.keys(legends)[d]
+                if (legends[entite].isVisible) {
+                    d3.selectAll("[entite=" + entite + "]")
+                        .select("text")
+                        .style("visibility", "hidden");
+                } else {
+                    d3.selectAll("[entite=" + entite + "]")
+                        .select("text")
+                        .style("visibility", "visible");
+                }
+                legends[entite].isVisible = !legends[entite].isVisible
+            }
+
+            function dblclickLegend(d) {
+                var entite = Object.keys(legends)[d];
+                var obj = JSON.stringify(Object.keys(nodes).filter(function (el) { return el.match("^" + entite + " ") }), null, 4);
+                var tab = window.open('about:blank', '_blank');
+                tab.document.write("<title>" + entite + "</title><pre>" + obj + "</pre>");
+                tab.document.close();
+            }
+
+            function tick() {
+                path.attr("d", function (d) {
+                    var dx = d.target.x - d.source.x,
+                        dy = d.target.y - d.source.y,
+                        dr = Math.sqrt(dx * dx + dy * dy);
+                    return "M" +
+                        d.source.x + "," +
+                        d.source.y + "A" +
+                        dr + "," + dr + " 0 0,1 " +
+                        d.target.x + "," +
+                        d.target.y;
+                });
+
+                node
+                    .attr("transform", function (d) {
+                        return "translate(" + d.x + "," + d.y + ")";
+                    });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
