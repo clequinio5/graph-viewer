@@ -1,4 +1,4 @@
-quickstart:
+# quickstart:
 
 1) Renseigner le path de chrome "pathChrome" dans config.json
 
@@ -7,12 +7,12 @@ quickstart:
 3) Enjoy!
 
 
-cmd:
+# cmd:
 
 graph-viewer {graph} {sens} {template}
 
 
-ex:
+# ex:
 
 graph-viewer
 
@@ -27,7 +27,7 @@ graph-viewer tree_v2_1 desc template_v2
 graph-viewer tree_v2_2 desc template_v2
 
 
-par defaut:
+# par defaut:
 
 tree = ./trees/tree.json
 
