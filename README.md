@@ -19,6 +19,6 @@ tree = ./trees/tree.json
 sens = 'desc'
 template = ./templates/template.html
 
-graph-viewer 
-est donc équivalent à:
-graph-viewer tree desc template
+'graph-viewer'
+est donc Ã©quivalent Ã :
+'graph-viewer tree desc template'
